@@ -2,8 +2,9 @@ import express, { Express } from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 
-import { mochiAudioDir } from "./helper/abspath";
+import { staticDir } from "./helper/abspath";
 import routerMochi from "./mochi/index";
+
 dotenv.config();
 
 const app: Express = express();
@@ -18,7 +19,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.use("/mochi", express.static(mochiAudioDir));
+app.use("/static", express.static(staticDir));
 
 app.use("/mochi", routerMochi);
 

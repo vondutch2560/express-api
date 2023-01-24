@@ -38,7 +38,7 @@ const corsOptions = {
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
-app.use("/mochi", express_1.default.static(abspath_1.mochiAudioDir));
+app.use("/static", express_1.default.static(abspath_1.staticDir));
 app.use("/mochi", index_1.default);
 app.listen(4321, () => {
     console.log("ExpressJS running on 4321");
