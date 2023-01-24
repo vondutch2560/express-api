@@ -34,7 +34,7 @@ const index_1 = __importDefault(require("./mochi/index"));
 dotenv.config();
 const app = (0, express_1.default)();
 const corsOptions = {
-    origin: /localhost|mochidemy|vone\.one/gm,
+    origin: "*",
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
