@@ -29,14 +29,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
+const abspath_1 = require("./helper/abspath");
 const index_1 = __importDefault(require("./mochi/index"));
 dotenv.config();
 const app = (0, express_1.default)();
 const corsOptions = {
-    origin: /localhost|mochidemy|vone\.one/gm,
+    origin: new RegExp(`${process.env.CORS}`, "gm"),
 };
 app.use((0, cors_1.default)(corsOptions));
 app.use(express_1.default.json());
+app.use("/mochi", express_1.default.static(abspath_1.mochiAudioDir));
 app.use("/mochi", index_1.default);
 app.listen(4321, () => {
     console.log("ExpressJS running on 4321");

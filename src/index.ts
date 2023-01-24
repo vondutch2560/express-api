@@ -2,14 +2,14 @@ import express, { Express } from "express";
 import * as dotenv from "dotenv";
 import cors from "cors";
 
+import { mochiAudioDir } from "./helper/abspath";
 import routerMochi from "./mochi/index";
 dotenv.config();
 
 const app: Express = express();
 
-// origin sẽ dùng dotenv
 const corsOptions = {
-	origin: /localhost|mochidemy|vone\.one/gm,
+	origin: new RegExp(`${process.env.CORS}`, "gm"),
 };
 // test terminal bằng lệnh sau
 // curl -H "Origin: http://vone.one/" --head http://localhost:4321/
@@ -17,6 +17,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
+
+app.use("/mochi", express.static(mochiAudioDir));
 
 app.use("/mochi", routerMochi);
 
