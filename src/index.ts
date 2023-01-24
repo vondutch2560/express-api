@@ -10,7 +10,8 @@ dotenv.config();
 const app: Express = express();
 
 const corsOptions = {
-	origin: /localhost|mochidemy|vone\.one/gm,
+	origin: "*",
+	// origin: /localhost|mochidemy|vone\.one/gm,
 	// origin: new RegExp(`${process.env.CORS}`, "gm"),
 };
 // test terminal bằng lệnh sau
