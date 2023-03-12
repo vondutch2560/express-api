@@ -48,6 +48,7 @@ mochiRouter.get("/md5", (_req: Request, res: Response): void => {
 mochiRouter.get("/delete/:md5", async (req: Request, res: Response) => {
 	const result = await removePath(`${mochiAudioDir}/${req.params.md5}.mp3`);
 	res.send({ result });
+	// fix lai, moi chi delete file mp3. chua cap nhat lai file md5.json, va cung phai restart lai pm2 moi co hieu luc
 });
 
 export default mochiRouter;
