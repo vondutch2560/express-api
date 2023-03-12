@@ -14,15 +14,11 @@ async function downloadCoverJav(url: string, code: string, stoDir: string) {
 	});
 }
 
-async function downloadAudioGoogleTrans(
-	str: string,
-	pathName: string,
-): Promise<boolean> {
+async function downloadAudioGoogleTrans(str: string, pathName: string): Promise<boolean> {
 	const audioFile = createWriteStream(pathName);
-	const url = `https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=en&q=${str.replace(
-		"%",
-		" percent",
-	)}`;
+	const url = `https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=en&q=${str
+		.replace("%", " percent")
+		.replace("&", " and")}`;
 	const response = await axios({ url, method: "GET", responseType: "stream" });
 	response.data.pipe(audioFile);
 

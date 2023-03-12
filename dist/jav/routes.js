@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const controller_1 = require("./auth/controller");
+const controller_2 = require("./film/controller");
+const middleware_1 = require("./auth/middleware");
+const javRouter = (0, express_1.Router)();
+javRouter.post("/register", controller_1.register);
+javRouter.post("/login", controller_1.login);
+javRouter.post("/scanfile", middleware_1.isAuth, controller_2.scanfile);
+exports.default = javRouter;

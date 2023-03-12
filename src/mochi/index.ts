@@ -17,6 +17,7 @@ if (!existsSync(mochiMd5File)) {
 }
 
 mochiRouter.post("/audio", async (req: Request, res: Response) => {
+	// nếu dùng 1 mình thì không sao, nhưng nhiều người dùng thì khi kiểm tra sự trùng lặp MD5 nên đọc lại danh sách file
 	if (listMD5.includes(req.body.md5)) {
 		res.send({ error: true, msg: "Md5 code is exist" });
 	} else {
