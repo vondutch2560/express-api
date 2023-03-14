@@ -17,8 +17,8 @@ async function downloadCoverJav(url: string, code: string, stoDir: string) {
 async function downloadAudioGoogleTrans(str: string, pathName: string): Promise<boolean> {
 	const audioFile = createWriteStream(pathName);
 	const url = `https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=en&q=${str
-		.replace("%", " percent ")
-		.replace("&", " and ")}`;
+		.replace(/%/g, " percent ")
+		.replace(/&/g, " and ")}`;
 	const response = await axios({ url, method: "GET", responseType: "stream" });
 	response.data.pipe(audioFile);
 
