@@ -21,8 +21,8 @@ exports.downloadCoverJav = downloadCoverJav;
 async function downloadAudioGoogleTrans(str, pathName) {
     const audioFile = (0, fs_1.createWriteStream)(pathName);
     const url = `https://translate.google.com/translate_tts?ie=UTF-&&client=tw-ob&tl=en&q=${str
-        .replace("%", " percent")
-        .replace("&", " and")}`;
+        .replace(/%/g, " percent ")
+        .replace(/&/g, " and ")}`;
     const response = await (0, axios_1.default)({ url, method: "GET", responseType: "stream" });
     response.data.pipe(audioFile);
     return new Promise((resolve, reject) => {
